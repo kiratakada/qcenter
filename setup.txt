@@ -1,0 +1,71 @@
+How to setup qcenter server
+
+1. create virtualenv qcenter
+
+    $ mkvirtualenv qcenter
+
+2. clone all code from github
+
+    $ git clone git@github.com:kiratakada/qcenter.git
+    
+3. cd ../source qcenter
+    
+    $ pip install -r requirements.txt
+
+4. Create database
+
+    4.1 create new user for database
+    
+        $ createuser -P -s -e scoopadm_usr
+        password : hobbes
+        confirm password : hobbes
+    
+    4.2 create database with scoopadm_usr permissions
+    
+        $ createdb qcenter_db -U scoopadm_usr
+
+    4.3 create database for testing
+    
+        $ createdb sc2_testing_db -U scoopadm_usr
+
+
+5. Setup all models.py
+
+    5.1  Create DB
+    
+        $ python manage.py createdb
+        
+    5.2  Syncd DB
+    
+        $ python manage.py syncdb
+        
+    5.3  Destroy DB [ WARNING : This method to destroy all your database, dont try if you not sure]
+    
+        $ python manage.py dropdb
+
+
+6. Run service
+
+    6.1 Run by local ip address http://127.0.0.1:5000
+        
+        $ python manage.py runserver
+    
+    6.2 Run with specific ip address http://10.62.3.7:5000
+    
+        $ python manage.py runserver -p 5000 -t 10.62.3.7
+    
+    6.3 Run with specific ip address with different port  http://10.62.3.7:7000
+        
+        $ python manage.py runserver -p 7000 -t 10.62.3.7
+
+7. How to execute unit test
+
+    7.1 Normal to execute
+    
+        $ nosetests
+    
+    7.2 Print all module test name
+    
+        $ nosetests -v
+
+    
