@@ -1,0 +1,61 @@
+{% extends "base/base_login.html" %}
+
+{% block title %} Register Qcenter {% endblock %}
+
+{% block head %}
+    <script src="/qcenter/static/js/jquery.uniform.min.js" type="text/javascript" charset="utf-8"></script>
+    <link href="/qcenter/static/css/register.css" type="text/css" rel="stylesheet"/>
+    
+    <style>
+        #id_image{
+            background-image: url("/qcenter/static/assets/bg.png");
+        }
+        
+        #id_gender, #id_city{
+            width: 160px;
+        }
+
+    </style>
+{% endblock %}
+
+
+{% block body %}
+	<form enctype="multipart/form-data" method="POST" action=".">
+        <ul>
+            <li>
+                <label>Name</label>
+                {{ form.firstname }} &nbsp {{ form.lastname }}
+            </li>
+            <li>
+                <label>Email</label>{{ form.email }}
+            </li>
+            <li>
+                <label>Password</label>{{ form.password }}
+            </li>
+            <li>
+                <label>Phone number</label>{{ form.phone }}
+            </li>
+            <li>
+                <label>Address</label>{{ form.address }}
+            </li>
+            
+            <li>
+                <label>Gender</label>{{ form.gender }}
+            </li>
+            
+            <li>
+                <label>City</label>{{ form.city }}
+            </li>
+            <li>
+                <label>Avatar</label>{{ form.image }}
+            </li>
+        </ul>
+        <p>
+            <button type="submit" class="reset">Register</button>
+            <a href="{% url 'user_login' %}">
+                <button type="button" class="reset">Cancel</button>
+            </a>
+            <button type="reset" class="right">Reset</button>
+        </p>
+    </form>
+{% endblock %}

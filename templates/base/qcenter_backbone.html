@@ -1,0 +1,95 @@
+{% load i18n %}
+
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link href="/qcenter/static/css/main.css" type="text/css" rel="stylesheet"/>
+    {% block javascript %}{% endblock %}
+    
+	
+	{% block style %}{% endblock %}
+	
+	<style  type="text/css">
+        #id_footer{
+            padding: 10px;
+            font-size: 11px;
+            color: white;
+            font-family: Helvetica;
+            background-color: #969696;
+			width: 960px;
+		}
+    </style>
+	
+	{% block head %}{% endblock %}
+</head>
+
+<body>
+    <div id="header">
+	<div class="container">
+	    <div class="sp-logo-small leftfloat"></div>
+	    <div class="rightfloat">
+		<span style="color:white;">Welcome </span> &nbsp;
+		<a href="{% url 'user_logout' %}">
+		    logout
+		</a>
+	    </div>
+	    <div class="clearfix"></div>
+	</div>
+    </div>
+    
+    <div class="menu_list container">
+	<ul>
+	    <li class="item">
+		<a href="#">
+		    <span class="icon fa fa-users fa-5x"></span>
+		    <span class="text">Users</span>
+		</a>
+	    </li>
+	    <li class="item">
+		<a href="#">
+		    <span class="icon fa fa-sitemap fa-5x"></span>
+		    <span class="text">Roles</span>
+		</a>
+	    </li>
+	    <li class="item">
+		<a href="#">
+		    <span class="icon fa fa-puzzle-piece fa-5x"></span>
+		    <span class="text">Organization</span>
+		</a>
+	    </li>
+	    <li class="item">
+		<a href="#">
+		    <span class="icon fa fa-gear fa-5x"></span>
+		    <span class="text">Permission</span>
+		</a>
+	    </li>
+	    <li class="item">
+		<a href="#">
+		    <span class="icon fa fa-gears fa-5x"></span>
+		    <span class="text">Group Permission</span>
+		</a>
+	    </li>
+	</ul>
+	<div class="clearfix"></div>
+    </div>
+        
+    {% if messages %}
+	<div class="container">
+	    <div class="messages notice small" style="margin-top: 1em">
+		{% for message in messages %}
+		    <span{% if message.tags %} class="{{ message.tagsX }}"{% endif %}>{{message}}</span><br/>
+		{% endfor %}
+	    </div>
+	</div>
+    {% endif %}
+    
+    <div class="container content">
+        {% block body %}{% endblock %}
+    </div>
+	
+    <div id="footer" class="container">
+	&copy;2010-2014 All Right Reserved. SCOOP is registered trademark of Apps-Foundry
+    </div>
+</body>
+</html>
+

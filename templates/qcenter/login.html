@@ -1,0 +1,32 @@
+{% extends "base/base_login.html" %}
+
+{% block title %} Login Qcenter {% endblock %}
+
+{% block head %}
+	<link href="/qcenter/static/css/login.css" type="text/css" rel="stylesheet"/>
+{% endblock %}
+
+
+{% block body %}
+	<form method="post" class="login">
+		<p>
+			<label for="login">Username:</label>
+			{{ form.username }}
+		</p>
+	
+		<p>
+			<label for="password">Password:</label>
+			{{ form.password }}
+		</p>
+	
+		<p class="login-submit">
+		  <button type="submit" class="login-button">Login</button>
+		</p>
+	
+		<p class="forgot-password">
+			<a href="{% url 'user_register' %}">Register</a> &nbsp; | &nbsp;
+			<a href="#">Forgot my password</a>
+		</p>
+		
+	</form>
+{% endblock %}

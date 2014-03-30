@@ -3,13 +3,16 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'qcenter.views.home', name='home'),
-    # url(r'^qcenter/', include('qcenter.foo.urls')),
+from django.conf import settings
 
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+urlpatterns = patterns('',
+
+    url(r'^$', 'data.views.user_login', name='user_login'),
+    url(r'^%s/$' % (settings.PROJECT_NAME), 'data.views.user_login', name = 'user_login'),
+    url(r'^%s/login/$' % (settings.PROJECT_NAME), 'data.views.user_login', name = 'user_login'),
+    url(r'^%s/logout/$' % (settings.PROJECT_NAME), 'data.views.user_logout', name = 'user_logout'),
+
+    url(r'^%s/register/$' % (settings.PROJECT_NAME), 'data.views.user_register', name = 'user_register'),
 
     url(r'^%s/static/(?P<path>.*)$' % (settings.PROJECT_NAME), 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 
