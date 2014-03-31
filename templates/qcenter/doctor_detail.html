@@ -9,7 +9,10 @@
                 
                 <div style="float: right; padding: 30px;">
                     <a href="{% url 'doctor_form' %}">
-                        <button type="button" class="action">Isi Form Sakit </button>
+                        <button type="button" class="action">Fill Form</button>
+                    </a>
+                    <a href="{% url 'hospital' doctor.hospital.id %}">
+                        <button type="button" class="action">Doctor schedule </button>
                     </a>
                 </div>
                 
