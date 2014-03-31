@@ -1,0 +1,27 @@
+{% extends "base/base_login.html" %}
+
+{% block title %} Confirmation Register {% endblock %}
+
+{% block head %}
+	<link href="/qcenter/static/css/dashboard.css" type="text/css" rel="stylesheet"/>
+    <link href="/qcenter/static/css/register.css" type="text/css" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+    <div  style="padding-top: 10%">
+        <div  class="confirm_ballon">
+            <br><br>
+            <span>
+                Thank you for join us <br><br>
+                
+                <a href="{% url 'user_login' %}">
+                    <button type="button" class="action">OK</button>
+                </a>
+            </span>
+            
+            <span style="margin-left: 67%; margin-top: -70%">
+                <img src="/qcenter/static/assets/left.jpg">
+            </span>
+        </div>
+    </div>
+{% endblock %}

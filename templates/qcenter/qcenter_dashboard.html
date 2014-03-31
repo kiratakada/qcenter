@@ -4,6 +4,19 @@
 
 
 {% block body %}
-    <h1>WELCOME TO SCOOPCAS MANAGEMENT</h1>
-    <div class="line"></div>
+    <div class="middle">
+
+		<div class="container">
+			<main class="content">
+				<div class="big_ballon">
+                    Welcome {{ user.first_name }} 
+                </div>
+            </main><!-- .content -->
+		</div><!-- .container-->
+
+		{% include "base/sidebar.html" %}
+	</div>
+    
+    
+    
 {% endblock %}

@@ -14,9 +14,13 @@ li {padding:26px 0px;border-top:1px dotted #c7c7c7;min-height:27px;}
 /*****************/
 
 label {
-	float:left;
-	width:180px;
-	color: #00A1D2;
+  float: left;
+  width: 100px;
+  line-height: 40px;
+  padding-right: 10px;
+  font-weight: 100;
+  text-align: left;
+  letter-spacing: 1px;
 }
 
 input, 
@@ -30,8 +34,20 @@ button {
 	color:#8c8a8b;
 }
 
-input[type=text], 
-input[type=password], 
+input[type=text], input[type=password] {
+  padding: 0 10px;
+  width: 300px;
+  height: 40px;
+  color: #bbb;
+  text-shadow: 1px 1px 1px black;
+  background: rgba(0, 0, 0, 0.16);
+  border: 0;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+}
+
+
 input[type=email], 
 textarea {
 	border:1px solid #c7c7c7;

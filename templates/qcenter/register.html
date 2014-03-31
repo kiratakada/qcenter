@@ -11,6 +11,9 @@
             background-image: url("/qcenter/static/assets/bg.png");
         }
         
+		#id_firstname, #id_lastname{width: 160px;}
+		#id_email, #id_password, #id_phone, #id_address {width: 330px;}
+		
         #id_gender, #id_city{
             width: 160px;
         }
@@ -33,7 +36,7 @@
                 <label>Password</label>{{ form.password }}
             </li>
             <li>
-                <label>Phone number</label>{{ form.phone }}
+                <label>Phone</label>{{ form.phone }}
             </li>
             <li>
                 <label>Address</label>{{ form.address }}
@@ -51,9 +54,9 @@
             </li>
         </ul>
         <p>
-            <button type="submit" class="reset">Register</button>
+            <button type="submit" class="action">Register</button>
             <a href="{% url 'user_login' %}">
-                <button type="button" class="reset">Cancel</button>
+                <button type="button" class="action">Cancel</button>
             </a>
             <button type="reset" class="right">Reset</button>
         </p>

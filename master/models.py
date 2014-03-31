@@ -3,7 +3,6 @@ from django.db import models
 class Country(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(null = True, blank = True)
-    flag = models.CharField(max_length=50)
 
     def __unicode__(self):
         return "%s" % self.name
@@ -16,6 +15,10 @@ class City(models.Model):
     def __unicode__(self):
         return "%s" % self.name
 
+    def get_hospital(self):
+        hospital = Hospital.objects.filter(city=self.id)
+        return hospital
+
 
 class Hospital(models.Model):
     name = models.CharField(max_length=100)
@@ -26,6 +29,11 @@ class Hospital(models.Model):
 
     def __unicode__(self):
         return "%s" % self.name
+
+    def get_specialist(self):
+        doctors = Doctor.objects.filter(hospital=self.id)
+        return doctors
+
 
 class CategorySpecialist(models.Model):
     name = models.CharField(max_length=100)

@@ -20,14 +20,45 @@ class LoginForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'qcenter@gmail.com'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'password'}))
 
+    def __init__(self, *args, **kwargs):
+        super(LoginForm, self).__init__(*args, **kwargs)
+        self._user = None
+
+    def get_user(self):
+        return self._user
+
+    def clean(self):
+        if self.errors:
+            return self.cleaned_data
+
+        username = self.cleaned_data.get('username').strip()
+        password = self.cleaned_data.get('password')
+
+        user = authenticate(username=username, password=password)
+        if user is None:
+            raise forms.ValidationError("Invalid Username/Password")
+        if not user.is_active:
+            raise forms.ValidationError("Your account is disabled")
+
+        self._user = user
+
+        return self.cleaned_data
+
 class RegisterForm(forms.Form):
-    email = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'qcenter@gmail.com'}))
+    email = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'XXXXX'}))
     firstname = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'First name'}))
     lastname = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Last name'}))
-    password = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'my password'}))
-    phone = forms.CharField(widget=forms.TextInput(attrs={'placeholder': '+62813999999'}))
-    address = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'my address'}))
+    password = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'XXXXX'}))
+    phone = forms.CharField(widget=forms.TextInput(attrs={'placeholder': '+62 XXXXX'}))
+    address = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'XXXXX'}))
 
     image = forms.FileField(label="Image")
     gender = forms.ChoiceField(choices=GENDER_CHOICES)
     city = forms.ModelChoiceField(queryset=City.objects.all(), empty_label="---")
+
+
+class ScheduleForm(forms.Form):
+    subject = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Apakah penyakit anda?'}), required=False)
+    medicine_report = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Jenis obat yang pernah dipakai atau pantangan obat'}), required=False)
+    trauma = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Gejala yang anda alami?'}), required=False)
+

@@ -1,0 +1,71 @@
+{% extends "base/qcenter_backbone.html" %}
+
+{% block title %} {{ doctor.name }} {% endblock %}
+
+{% block body %}
+    <div class="middle">
+        <div class="container">
+            <main class="content">
+                
+                <div style="float: right; padding: 30px;">
+                    <a href="{% url 'doctor_form' %}">
+                        <button type="button" class="action">Isi Form Sakit </button>
+                    </a>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 80%; text-align: center">Patient Schedule</th>
+                        </tr>
+                    </thead>
+                    
+                    {% if contents %}
+                        <tbody>
+                            {% for item in contents.object_list %}
+                                <tr>
+                                    <td>
+                                        <label>{{ item.user}}</label>
+                                        Sakit - {{ item.sick_report }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    {% else %}
+                        <tr>
+                            <td colspan=2 style="text-align: center"> No Schedule today</td>
+                        </tr>
+                    {% endif %}
+                </table>
+                
+                <div style="padding: 20px; margin-right: 20px; float: right">
+                    {% if contents.has_other_pages %}
+                        <tfoot>
+                            <tr><td colspan="8" style="vertical-align: middle">
+                                {% if contents.has_previous %}
+                                    <a class="button" href="?page=1{{url}}&select={{select_stat}}">First</a>
+                                    <a class="button" href="?page={{contents.previous_page_number}}{{url}}">?</a>
+                                {% else %}
+                                    <a class="button">First</a>
+                                    <a class="button">?</a>
+                                {% endif %}
+                
+                                <span style="display: inline-block; margin-right: 0.583em; margin-top: 4px">
+                                    Page {{contents.number}} out of {{contents.paginator.num_pages}}
+                                </span>
+                
+                                {% if contents.has_next %}
+                                    <a class="button" href="?page={{contents.next_page_number}}{{url}}">?</a>
+                                    <a class="button" href="?page={{contents.paginator.num_pages}}{{url}}">Last</a>
+                                {% endif %}
+                            </td>
+                            </tr>
+                        </tfoot>
+                    {% endif %}
+                </div>
+            
+            </main>
+        </div>
+        {% include "base/sidebar_doctor.html" %}
+    </div>
+{% endblock %}

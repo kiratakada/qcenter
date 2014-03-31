@@ -3,6 +3,16 @@ from django.contrib.auth.models import User
 from master.models import *
 
 
+DAY_CHOICES = (
+    (1, 'Monday'),
+    (2, 'Tuesday'),
+    (3, 'Wednesday'),
+    (4, 'Thursday'),
+    (5, 'Friday'),
+    (6, 'Saturday'),
+    (7, 'Sunday')
+)
+
 class Roles(models.Model):
     name = models.CharField(max_length=40)
     description = models.TextField(null = True, blank = True)
@@ -20,7 +30,7 @@ class UserProfile(models.Model):
     address = models.CharField(max_length=250)
     image = models.CharField(max_length=50)
     is_active = models.BooleanField()
-    date_created = models.DateField()
+    date_created = models.DateTimeField(auto_now_add=True)
 
     role = models.ForeignKey(Roles, null=True,  blank=True)
     country = models.ForeignKey(Country, null=True,  blank=True)
@@ -31,24 +41,29 @@ class UserProfile(models.Model):
 
 class Doctor(models.Model):
     name = models.CharField(max_length=100)
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    phone = models.CharField(max_length=50)
+    phone = models.CharField(max_length=50, null=True,  blank=True)
     gender = models.IntegerField()
     hospital = models.ForeignKey(Hospital)
     specialist = models.ForeignKey(Specialist)
     is_active = models.BooleanField()
-    date_created = models.DateField()
+    date_created = models.DateTimeField(auto_now_add=True)
     image = models.CharField(max_length=50)
     patient_quota = models.IntegerField()
 
     def __unicode__(self):
         return "%s" % self.name
 
+    def get_schedule(self):
+        sch = DoctorSchedule.objects.filter(doctor=self.id)
+        return sch
+
 class DoctorSchedule(models.Model):
-    date = models.DateField()
+    date = models.DateTimeField(auto_now_add=True)
     hospital = models.ForeignKey(Hospital)
     doctor = models.ForeignKey(Doctor)
+
+    days = models.IntegerField()
+    hours = models.CharField(max_length=50, null=True,  blank=True)
     patient_quota = models.IntegerField()
 
     def __unicode__(self):
@@ -59,7 +74,7 @@ class SickReport(models.Model):
     subject = models.CharField(max_length=250, null=True, blank=True)
     medicine_report = models.CharField(max_length=250, null=True, blank=True)
     trauma = models.CharField(max_length=250, null=True, blank=True)
-    date_from = models.DateField()
+    date_from = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
         return "%s" % self.subject
@@ -68,10 +83,11 @@ class SickReport(models.Model):
 class Queue(models.Model):
     user = models.ForeignKey(User)
     schedule = models.ForeignKey(DoctorSchedule)
-    date = models.DateField()
+    date = models.DateTimeField()
     patient_number = models.IntegerField()
     is_active = models.BooleanField()
     sick_report = models.ForeignKey(SickReport, null=True, blank=True)
+    date_created = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
         return "%s" % self.user

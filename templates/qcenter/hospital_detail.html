@@ -1,0 +1,158 @@
+{% extends "base/qcenter_backbone.html" %}
+
+{% block title %} {{ hospital.name }} {% endblock %}
+
+
+{% block body %}
+    <div class="middle">
+        <div class="container">
+            <main class="content">
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 20%; text-align: center">Doctor</th>
+                            <th style="width: 80%; text-align: center">Daily Schedule</th>
+                        </tr>
+                    </thead>
+                    
+                    {% if contents %}
+                        <tbody>
+                            {% for item in contents.object_list %}
+                                <tr>
+                                    <td>
+                                        <img src="/qcenter/display/doctor/{{ item.image }}" style="width: 120px; height: 120px;">
+                                    </td>
+                                    <td style=" vertical-align: top; padding: 20px; font-size: 12px; font-family: inherit" >
+                                        {{ item.name }} ({{ item.specialist }}) <br/><br/>
+                                        
+                                        {% for data in item.get_schedule %}
+                                            {% ifequal data.days 1 %}
+                                                {% ifequal data.days day_int %}
+                                                    <a href="{% url 'doc_schedule' item.id data.id %}">
+                                                        <div class="reg_ballon">
+                                                            <label>Senin</label> {{ data.hours }} <br/>
+                                                        </div>
+                                                    </a>
+                                                {% else %}
+                                                    <label>Senin</label> {{ data.hours }}<br/>
+                                                {% endifequal %}
+                                            {% endifequal %}
+                                            
+                                            {% ifequal data.days 2 %}
+                                                {% ifequal data.days day_int %}
+                                                    <a href="{% url 'doc_schedule' item.id data.id %}">
+                                                        <div class="reg_ballon">
+                                                            <label>Selasa</label> {{ data.hours }}<br/>
+                                                        </div>
+                                                    </a>
+                                                {% else %}
+                                                    <label>Selasa</label> {{ data.hours }}<br/>
+                                                {% endifequal %}
+                                            {% endifequal %}
+                                            
+                                            
+                                            
+                                            {% ifequal data.days 3 %}
+                                                {% ifequal data.days day_int %}
+                                                    <a href="{% url 'doc_schedule' item.id data.id %}">
+                                                        <div class="reg_ballon">
+                                                            <label>Rabu</label> {{ data.hours }}<br/>
+                                                        </div>
+                                                    </a>
+                                                {% else %}
+                                                    <label>Rabu</label> {{ data.hours }}<br/>
+                                                {% endifequal %}
+                                            {% endifequal %}
+                                            
+                                            {% ifequal data.days 4 %}
+                                                {% ifequal data.days day_int %}
+                                                    <a href="{% url 'doc_schedule' item.id data.id %}">
+                                                        <div class="reg_ballon">
+                                                            <label>Kamis</label> {{ data.hours }}<br/>
+                                                        </div>
+                                                    </a>
+                                                {% else %}
+                                                    <label>Kamis</label> {{ data.hours }}<br/>
+                                                {% endifequal %}
+                                            {% endifequal %}
+                                            
+                                            {% ifequal data.days 5 %}
+                                                {% ifequal data.days day_int %}
+                                                    <a href="{% url 'doc_schedule' item.id data.id %}">
+                                                        <div class="reg_ballon">
+                                                            <label>Jumat</label> {{ data.hours }}<br/>
+                                                        </div>
+                                                    </a>
+                                                {% else %}
+                                                    <label>Jumat</label> {{ data.hours }}<br/>
+                                                {% endifequal %}
+                                            {% endifequal %}
+                                            
+                                            {% ifequal data.days 6 %}
+                                                {% ifequal data.days day_int %}
+                                                    <a href="{% url 'doc_schedule' item.id data.id %}">
+                                                        <div class="reg_ballon">
+                                                            <label>Sabtu</label> {{ data.hours }}<br/>
+                                                        </div>
+                                                    </a>
+                                                {% else %}
+                                                    <label>Sabtu</label> {{ data.hours }}<br/>
+                                                {% endifequal %}
+                                            {% endifequal %}
+                                            
+                                            {% ifequal data.days 7 %}
+                                                {% ifequal data.days day_int %}
+                                                    <a href="{% url 'doc_schedule' item.id data.id %}">
+                                                        <div class="reg_ballon">
+                                                            <label>Minggu</label> {{ data.hours }}<br/>
+                                                        </div>
+                                                    </a>
+                                                {% else %}
+                                                    <label>Minggu</label> {{ data.hours }}<br/>
+                                                {% endifequal %}
+                                            {% endifequal %}
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    {% else %}
+                        <tr>
+                            <td colspan=2 style="text-align: center"> No Daily Schedule</td>
+                        </tr>
+                    {% endif %}
+                </table>
+                
+                <div style="padding: 20px; margin-right: 20px; float: right">
+                    {% if contents.has_other_pages %}
+                        <tfoot>
+                            <tr><td colspan="8" style="vertical-align: middle">
+                                {% if contents.has_previous %}
+                                    <a class="button" href="?page=1{{url}}&select={{select_stat}}">First</a>
+                                    <a class="button" href="?page={{contents.previous_page_number}}{{url}}">←</a>
+                                {% else %}
+                                    <a class="button">First</a>
+                                    <a class="button">←</a>
+                                {% endif %}
+                
+                                <span style="display: inline-block; margin-right: 0.583em; margin-top: 4px">
+                                    Page {{contents.number}} out of {{contents.paginator.num_pages}}
+                                </span>
+                
+                                {% if contents.has_next %}
+                                    <a class="button" href="?page={{contents.next_page_number}}{{url}}">→</a>
+                                    <a class="button" href="?page={{contents.paginator.num_pages}}{{url}}">Last</a>
+                                {% endif %}
+                            </td>
+                            </tr>
+                        </tfoot>
+                    {% endif %}
+                </div>
+                
+                
+            </main>
+        </div>
+        {% include "base/sidebar_hospital.html" %}
+    </div>
+{% endblock %}

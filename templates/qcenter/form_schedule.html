@@ -1,0 +1,57 @@
+{% extends "base/qcenter_backbone.html" %}
+
+{% block title %} {{ doctor.name }} {% endblock %}
+
+
+{% block head %}
+    <style>
+        #id_subject {
+            width: 300px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="middle">
+        <div class="container">
+            <main class="content">
+                
+                <form method="POST">
+                    <div style="float: right; padding: 30px;">
+                        <button type="submit" class="action">Submit Form</button>
+                        <a href="{% url 'doc_schedule' doctor.id sch_master.id %}">
+                            <button type="button" class="action">Cancel</button>
+                        </a>
+                    </div>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 80%; text-align: center">Form Sakit</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td>
+                                <label> Subject </label>
+                                {{ form.subject }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style=" vertical-align: top;">
+                                <label></label>
+                                {{ form.trauma }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style=" vertical-align: top;">
+                                <label></label>
+                                {{ form.medicine_report }}
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </main>
+        </div>
+        {% include "base/sidebar_doctor.html" %}
+    </div>
+{% endblock %}
