@@ -174,12 +174,17 @@ body {
 }
 
 .small_position{
-	margin-top: 160%;
+	margin-top: 130%;
 }
 
 .hos_small_position{
-	margin-top: 40%;
+	margin-top: 20%;
 }
+
+.doc_small_position{
+	margin-top: 5%;
+}
+
 
 .hos_small_ballon{
 	width: 80%;
