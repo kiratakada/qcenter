@@ -177,30 +177,43 @@ def doctor_form(request):
 
         if request.method == 'POST':
             form = ScheduleForm(request.POST)
-            if form.is_valid():
-                subject = form.cleaned_data['subject']
-                medicine_report = form.cleaned_data['medicine_report']
-                trauma = form.cleaned_data['trauma']
+            try:
+                patient_number = [str(random.randint(0,9)) for count in range(13)]
+                patient_number = "%s%s" % ('SC-', ''.join(patient_number))
 
-                #SickReport created data
-                sick = SickReport.objects.create(
-                    subject = subject,
-                    medicine_report = medicine_report,
-                    trauma = trauma
-                )
+                if form.is_valid():
+                    subject = form.cleaned_data['subject']
+                    medicine_report = form.cleaned_data['medicine_report']
+                    trauma = form.cleaned_data['trauma']
 
-                #Queue created data
-                que = Queue.objects.create(
-                    user = user,
-                    schedule = sch_master,
-                    date = datetime.now(),
-                    patient_number = 1,
-                    is_active = True,
-                    sick_report = sick
-                )
+                    #SickReport created data
+                    sick = SickReport.objects.create(
+                        subject = subject,
+                        medicine_report = medicine_report,
+                        trauma = trauma
+                    )
 
-                #TODO return to.. Message
+                    #Queue created data
+                    que = Queue.objects.create(
+                        user = user,
+                        schedule = sch_master,
+                        date = datetime.now(),
+                        receipt_number = patient_number,
+                        is_active = True,
+                        sick_report = sick
+                    )
 
+                    #TODO return to.. Message
+                    context = {'doctor': doctor, 'city': request.session.get('city'),
+                               'receipt': patient_number, 'user': user,
+                               'sch_master': sch_master}
+
+                    return render_to_response('qcenter/form_confirm.html', context,
+                        context_instance=RequestContext(request))
+
+            except Exception, e:
+                print e
+                return redirect('dashboard')
 
         else:
             form = ScheduleForm()
@@ -213,7 +226,6 @@ def doctor_form(request):
             context_instance=RequestContext(request))
 
     except Exception, e:
-        print e
         return redirect('dashboard')
 
 

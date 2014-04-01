@@ -84,7 +84,7 @@ class Queue(models.Model):
     user = models.ForeignKey(User)
     schedule = models.ForeignKey(DoctorSchedule)
     date = models.DateTimeField()
-    patient_number = models.IntegerField()
+    receipt_number = models.CharField(max_length=250, null=True, blank=True)
     is_active = models.BooleanField()
     sick_report = models.ForeignKey(SickReport, null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True)

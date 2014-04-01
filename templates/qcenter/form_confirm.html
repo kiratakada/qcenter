@@ -1,0 +1,31 @@
+{% extends "base/qcenter_backbone.html" %}
+
+{% block title %} {{ doctor.name }} {% endblock %}
+
+{% block body %}
+    <div class="middle">
+        <div class="container">
+            <main class="content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 80%; text-align: center">
+                                
+                                <span>Thank you</span> <br><br>
+                                <span>Your receipt number : {{ receipt }} </span> <br>
+                                <span>Ticket already send to your email : {{ user.email }}</span> <br><br>
+                                
+                                <span>Hotline phone : 021 - 667889, 5544 </span> <br><br>
+                                
+                                <a href="{% url 'doc_schedule' doctor.id sch_master.id %}">
+                                    <button type="button" class="action">OK</button>
+                                </a>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            </main>
+        </div>
+        {% include "base/sidebar_doctor.html" %}
+    </div>
+{% endblock %}
