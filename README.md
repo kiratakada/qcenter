@@ -9,16 +9,16 @@ Portal include:
   - registration with roles:
 
     - hospital admin
-      input all data admin related with hospital. likes room available, doctor available etc.
+      - input all data admin related with hospital. likes room available, doctor available etc.
      
     - hospital finance
-      can generate fee automaticly for patient. how much money must patient payed.
+      - can generate fee automaticly for patient. how much money must patient payed.
       
     - patient
-      can made an appointment wherever hes now. without come to hospital anymore.
-      can check doctor schedule.
+      - can made an appointment wherever hes now. without come to hospital anymore.
+      - can check doctor schedule.
 
     - doctors
-      doctors can view how many patient today or tommorow for him.
-      track record of patient store and can downloaded to his phone directly
+      - doctors can view how many patient today or tommorow for him.
+      - track record of patient store and can downloaded to his phone directly
    
