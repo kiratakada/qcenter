@@ -1,10 +1,24 @@
-DJANGO PROJECT:
-- PORTAL FOR HOSPITAL
+# QCENTER (PYTHON-DJANGO)
 
-TARGET :
-- patient can make an appointment when he sick without come to the hospital anymore.
+Qcenter is an database portal who can store all hospital records in 1 portal.
+the target is make a simple registrations for patient wherever they are now, without come to hospital anymore.
 
-Descriptions:
-- this portal allow you to register (become patient), and you have an access to check all doctor scheduled.
-- patient can search all hospital list by CITY --> HOSPITAL NAME --> DOCTOR --> MAKE APPOINTMENT
+Portal include:
 
+- User
+  - registration with roles:
+
+    - hospital admin
+      input all data admin related with hospital. likes room available, doctor available etc.
+     
+    - hospital finance
+      can generate fee automaticly for patient. how much money must patient payed.
+      
+    - patient
+      can made an appointment wherever hes now. without come to hospital anymore.
+      can check doctor schedule.
+
+    - doctors
+      doctors can view how many patient today or tommorow for him.
+      track record of patient store and can downloaded to his phone directly
+   
