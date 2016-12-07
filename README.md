@@ -1,7 +1,7 @@
 # QCENTER (PYTHON-DJANGO)
 
 Qcenter is an database portal who can store all hospital records in 1 portal.
-the target is make a simple registrations for patient wherever they are now, without come to hospital anymore.
+the target is make a simple registrations for patient when they sick or recheck doctor schedule by web/phone without come to hospital anymore.
 
 Portal include:
 
