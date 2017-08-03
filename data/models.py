@@ -21,7 +21,6 @@ class Roles(models.Model):
     def __unicode__(self):
         return "%s" % self.name
 
-
 class UserProfile(models.Model):
     user = models.ForeignKey(User, unique=True)
 

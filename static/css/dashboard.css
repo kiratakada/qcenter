@@ -164,13 +164,14 @@ body {
 .reg_ballon{
 	width: 80%;
 	margin: auto; -webkit-border-radius: 10px;
-	padding: 1px;
+	padding: 4px;
 	background-color: #B1D978;
 	color: black;
 	float: left;
 	border: 1px solid black;
 	font-family: inherit;
 	font-size: 12px;
+	padding-left: 6px;
 }
 
 .small_position{
@@ -189,7 +190,7 @@ body {
 .hos_small_ballon{
 	width: 80%;
 	padding: 2px;
-	background-color: #21436A;
+	background-color: white;
 	color: white;
 	margin-top: 10px;
 	margin-left: 20px;

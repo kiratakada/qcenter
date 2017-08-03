@@ -26,14 +26,17 @@ from master.models import *
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
+
+        error = form.errors.get('__all__', None)
         if form.is_valid():
             request.session['user_login'] = form.get_user()
             login(request, form.get_user())
             return HttpResponseRedirect(reverse('dashboard'))
     else:
         form = LoginForm()
+        error = None
 
-    return render_to_response('qcenter/login.html', {'form': form},
+    return render_to_response('qcenter/login.html', {'form': form, 'errors': error},
         context_instance=RequestContext(request))
 
 def user_logout(request):
@@ -44,6 +47,7 @@ def user_register(request):
     try:
         if request.method == 'POST':
             form = RegisterForm(request.POST, request.FILES)
+
             if form.is_valid():
                 email = form.cleaned_data['email']
                 firstname = form.cleaned_data['firstname']
@@ -54,13 +58,6 @@ def user_register(request):
                 address = form.cleaned_data['address']
                 gender = form.cleaned_data['gender']
                 city = form.cleaned_data['city']
-
-                try:
-                    photo = request.FILES['image']
-                    handle_uploaded_file(photo, 'user')
-                except Exception, e:
-                    print e
-                    pass
 
                 try:
                     if User.objects.filter(username__iexact=email).count() >= 1:
@@ -76,8 +73,8 @@ def user_register(request):
 
                     user_profile = UserProfile.objects.create(
                         user=user, gender = gender, phone = phone,
-                        address = address, image = str(photo),
-                        is_active = True, country = city.country, city = city)
+                        address = address, is_active = True,
+                        country = city.country, city = city)
 
                     return render_to_response('qcenter/register_confirm.html', {},
                         context_instance=RequestContext(request))
@@ -96,9 +93,16 @@ def user_register(request):
 
 def dashboard(request):
     city = City.objects.all()
+    user=request.session.get('user_login')
+    
+    user_profiles = None    
+    if user:
+        user_profiles = UserProfile.objects.get(user=user)
+    
     request.session['city'] = city
-
-    context = {'city': city}
+    
+    context = {'city': city, 'user_profile': user_profiles}
+    
     return render_to_response('qcenter/qcenter_dashboard.html', context,
         context_instance=RequestContext(request))
 
@@ -129,7 +133,6 @@ def hospital_details(request, hos_id=None):
             context_instance=RequestContext(request))
 
     except Exception, e:
-        print e
         return redirect('dashboard')
 
 

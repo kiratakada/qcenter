@@ -2,18 +2,49 @@
 
 {% block title %} Qcenter Dashboard {% endblock %}
 
-
 {% block body %}
     <div class="middle">
 
 		<div class="container">
 			<main class="content">
-				<div class="big_ballon">
-                    Welcome {{ user.first_name }} 
-                </div>
-            </main><!-- .content -->
-		</div><!-- .container-->
-
+				<table>
+					<thead>
+                        <tr>
+                            <th style="width: 20%; text-align: center;" colspan=2>
+								<label>Data Diri Pasien </label>
+							</th>
+                        </tr>
+                    </thead>
+					
+					<tbody>
+						<tr>
+							<td style="width: 1%"><label>Nama Lengkap</label></td>
+							<td>{{ user.first_name }} {{ user.last_name }}</td>
+						</tr>
+						<tr>
+							<td><label>Sex </label></td>
+							<td>
+								{% ifequal user_profile.gender 1 %}
+									<span>Laki Laki</span>
+								{% else %}
+									<span>Perempuan</span>
+								{% endifequal %}
+							</td>
+						</tr>
+						<tr>
+							<td><label>Telepon</label></td>
+							<td>{{ user_profile.phone }}</td>
+						</tr>
+						<tr>
+							<td><label>Alamat</label></td>
+							<td>{{ user_profile.address }}</td>
+						</tr>
+						
+					</tbody>
+					
+				</table>
+            </main>
+		</div>
 		{% include "base/sidebar.html" %}
 	</div>
     

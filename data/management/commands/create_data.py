@@ -15,7 +15,7 @@ class Command(BaseCommand):
         self.data_category_specialist()
         self.data_sub_category()
         self.data_dokter_boromeus()
-
+    
     def data_country(self):
         print '=============== Creating Data country'
         country_data = [
@@ -79,6 +79,7 @@ class Command(BaseCommand):
             print 'FAILED create hospital : %s  ERROR : %s' % (i[0], e)
 
         jakarta_hospital = [
+            ('RS PGI Cikini', 'Jl. Raden Saleh Raya No.40, RT.12/RW.2, Cikini, Menteng, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10330', '(021) 38997777', 'rs_18.jpg'),
             ('RS Royal Taruma', 'Jl. Daan Mogot No.34 Grogol', '(021) 56958338', 'rs_8.jpg'),
             ('RS Siloam Graha Medika', 'Jl. Raya Perjuangan Kav. 8 Kebon Jeruk', '(021) 5300888', 'rs_9.jpg'),
             ('RS Pelni Petamburan', 'Jl. K. S. Tubun No. 92 - 94', '(021) 5306901', 'rs_10.jpg'),
@@ -209,7 +210,7 @@ class Command(BaseCommand):
                 phone_fake = [str(random.randint(0,9)) for count in range(13)]
                 phone = "%s%s" % ('+628', ''.join(phone_fake))
 
-                hospital = Hospital.objects.get(name='RS Santo Borromeus')
+                hospital = Hospital.objects.get(name='RS PGI Cikini')
                 sp = Specialist.objects.get(name=specialist)
                 quota = 20
 
@@ -217,7 +218,6 @@ class Command(BaseCommand):
                     name = name, phone = phone,
                     gender = gender, hospital = hospital,
                     specialist = sp, is_active = True,
-                    #date_created = datetime.datetime.utcnow(),
                     image = image, patient_quota = quota
                 )
                 for i in day:
@@ -232,26 +232,20 @@ class Command(BaseCommand):
 
         doc_pnykit_dalam = [
             ('dr. Dian Yudhatama , SpPD.', 2, 'Dokter Penyakit Dalam', 'doc_1.jpg', [1,2,3,4,5,6], '08.00 - 13.30'),
-            ('dr. Edwin Setiabudi , SpPD.', 1, 'Dokter Penyakit Dalam', 'doc_2.jpg', [1,4,6], '18.30 - 19.30'),
-            ('dr. Handoko , SpPD.', 1, 'Dokter Penyakit Dalam', 'doc_3.jpg', [1,2,5,6], '08.00 - 14.00'),
-            ('dr. Jefry Tahari , SpPD.', 1, 'Dokter Penyakit Dalam', 'doc_4.jpg', [1,2,3,4,5,6], '10.00 - 14.00'),
-            ('dr. Mukta Prawata , SpPD.', 1, 'Dokter Penyakit Dalam', 'doc_5.jpg', [1,2,3,4,5,6], '08.30 - 13.30'),
+            ('dr. Edwin Setiabudi , SpPD.', 1, 'Dokter Umum', 'doc_2.jpg', [1,4,6], '18.30 - 19.30'),
+            ('dr. Handoko , SpPD.', 1, 'Dokter Psikologi', 'doc_3.jpg', [1,2,5,6], '08.00 - 14.00'),
+            ('dr. Jefry Tahari , SpPD.', 1, 'Dokter Psikologi', 'doc_4.jpg', [1,2,3,4,5,6], '10.00 - 14.00'),
+            ('dr. Mukta Prawata , SpPD.', 1, 'Dokter Jantung', 'doc_5.jpg', [1,2,3,4,5,6], '08.30 - 13.30'),
             ('dr. Ni Nyoman Ati S , SpPD.', 2, 'Dokter Penyakit Dalam', 'doc_6.jpg', [1,4,6], '14.30 - 18.00'),
-            ('dr. Veronica Dhian R , SpPD.', 2, 'Dokter Penyakit Dalam', 'doc_7.jpg', [2,5], '18.30 - 19.30'),
-            ('dr. Widyastuti Amidjojo', 2, 'Dokter Penyakit Dalam', 'doc_8.jpg', [1,2,3,4,5,6], '11.00 - 13.30')
-        ]
-
-        for i in doc_pnykit_dalam:
-            insert_data(i[0], i[1], i[2], i[3], i[4], i[5])
-
-        doc_tht= [
+            ('dr. Veronica Dhian R , SpPD.', 2, 'Dokter Bedah Umum', 'doc_7.jpg', [2,5], '18.30 - 19.30'),
+            ('dr. Widyastuti Amidjojo', 2, 'Dokter Penyakit Dalam', 'doc_8.jpg', [1,2,3,4,5,6], '11.00 - 13.30'),
             ('dr. Bogi Suseno , SpTHT', 1, 'Dokter THT', 'doc_9.jpg', [1,2,6,7], '12.00 - 17.00'),
-            ('dr. Langlang Dogha , M.Kes', 1, 'Dokter THT', 'doc_10.jpg', [5], '15.00 - 16.00'),
+            ('dr. Langlang Dogha , M.Kes', 1, 'Dokter Gigi Endodontik', 'doc_10.jpg', [5], '15.00 - 16.00'),
             ('dr. Nur Akbar Aroeman , SpTHT.', 1, 'Dokter THT', 'doc_11.jpg', [1,2,5,6], '16.00 - 18.00'),
-            ('dr. Shinta Nurmasari , M.Kes,SpTHT', 2, 'Dokter THT', 'doc_12.jpg', [1,2,3,5], '08.00 - 11.00'),
+            ('dr. Shinta Nurmasari , M.Kes,SpTHT', 2, 'Dokter Saraf', 'doc_12.jpg', [1,2,3,5], '08.00 - 11.00'),
             ('dr. Suparti Suleh , SpTHT.', 1, 'Dokter THT', 'doc_13.jpg', [3,4,6], '08.00 - 11.00'),
         ]
 
-        for i in doc_tht:
+        for i in doc_pnykit_dalam:
             insert_data(i[0], i[1], i[2], i[3], i[4], i[5])
 

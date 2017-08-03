@@ -36,9 +36,9 @@ class LoginForm(forms.Form):
 
         user = authenticate(username=username, password=password)
         if user is None:
-            raise forms.ValidationError("Invalid Username/Password")
+            raise forms.ValidationError("Password yang kamu masukkan salah, silahkan masukkan password yang benar.")
         if not user.is_active:
-            raise forms.ValidationError("Your account is disabled")
+            raise forms.ValidationError("Akun kamu dalam masa ban")
 
         self._user = user
 
@@ -52,7 +52,7 @@ class RegisterForm(forms.Form):
     phone = forms.CharField(widget=forms.TextInput(attrs={'placeholder': '+62 XXXXX'}))
     address = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'XXXXX'}))
 
-    image = forms.FileField(label="Image")
+    # image = forms.FileField(label="Image", required=False)
     gender = forms.ChoiceField(choices=GENDER_CHOICES)
     city = forms.ModelChoiceField(queryset=City.objects.all(), empty_label="---")
 

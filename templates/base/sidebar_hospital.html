@@ -1,37 +1,16 @@
 <aside class="left-sidebar">
     <div class="hos_small_ballon">
-        <img src="/qcenter/display/hospital/{{ hospital.image}}" width="200;" height="100;">
+        <img src="/qcenter/static/display/hospital/{{ hospital.image}}" width="200;" height="100;">
     </div>
     
     <div class="small_ballon">
-        <span>Name : </span><br>
+        <span>Nama : </span><br>
         <span>{{ hospital.name }}</span><br/><br/>
         
-        <span>Address : </span><br>
+        <span>Alamat : </span><br>
         <span>{{ hospital.address }}, {{ hospital.city }} </span><br/><br/>
-        <span>Phone : </span><br>
+        <span>Telepon : </span><br>
         <span>{{ hospital.phone }}</span><br>
     </div>
-    
-    <div class="hos_small_position">
-        <a href="{% url 'dashboard' %}">
-            <div class="small_ballon">
-                <img src="/qcenter/static/icons/dashboard.ico" width=20px; height=20px;> &nbsp;
-                Dashboard
-            </div>
-        </a>
-        
-        <div class="small_ballon">
-            <img src="/qcenter/static/icons/news.ico" width=20px; height=20px;> &nbsp;
-            News
-        </div>
-        <div class="small_ballon">
-            <img src="/qcenter/static/icons/schedule.ico" width=20px; height=20px;> &nbsp;
-            Your Schedule
-        </div>
-        <div class="small_ballon">
-            <img src="/qcenter/static/icons/engine.ico" width=20px; height=20px;> &nbsp;
-            Settings
-        </div>
-    </div>
+    {% include "base/dasbor.html" %}
 </aside>

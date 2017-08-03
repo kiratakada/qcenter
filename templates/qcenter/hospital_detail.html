@@ -11,8 +11,8 @@
                 <table>
                     <thead>
                         <tr>
-                            <th style="width: 20%; text-align: center">Doctor</th>
-                            <th style="width: 80%; text-align: center">Daily Schedule</th>
+                            <th style="width: 20%; text-align: center">Dokter</th>
+                            <th style="width: 80%; text-align: center">Jadwal Dokter</th>
                         </tr>
                     </thead>
                     
@@ -21,7 +21,7 @@
                             {% for item in contents.object_list %}
                                 <tr>
                                     <td>
-                                        <img src="/qcenter/display/doctor/{{ item.image }}" style="width: 120px; height: 120px;">
+                                        <img src="/qcenter/static/display/doctor/{{ item.image }}" style="width: 150px; height: 160px;">
                                     </td>
                                     <td style=" vertical-align: top; padding: 20px; font-size: 12px; font-family: inherit" >
                                         {{ item.name }} ({{ item.specialist }}) <br/><br/>
@@ -51,14 +51,12 @@
                                                 {% endifequal %}
                                             {% endifequal %}
                                             
-                                            
-                                            
                                             {% ifequal data.days 3 %}
                                                 {% ifequal data.days day_int %}
                                                     <a href="{% url 'doc_schedule' item.id data.id %}">
                                                         <div class="reg_ballon">
                                                             <label>Rabu</label> {{ data.hours }}<br/>
-                                                        </div>
+                                                        </div> 
                                                     </a>
                                                 {% else %}
                                                     <label>Rabu</label> {{ data.hours }}<br/>

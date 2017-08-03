@@ -1,23 +1,12 @@
 <aside class="left-sidebar">
-    <div class="small_position">
-        <a href="{% url 'dashboard' %}">
-            <div class="small_ballon">
-                <img src="/qcenter/static/icons/dashboard.ico" width=20px; height=20px;> &nbsp;
-                Dashboard
-            </div>
-        </a>
+    <div style="text-align: center; padding-top: 30px;">
+        {% ifequal user_profile.gender 1 %}
+            <img src="/qcenter/static/display/gender/male.png" width="200;" height="200;">
+        {% else %}
+            <img src="/qcenter/static/display/gender/female.png" width="200;" height="200;">
+        {% endifequal %}
         
-        <div class="small_ballon">
-            <img src="/qcenter/static/icons/news.ico" width=20px; height=20px;> &nbsp;
-            News
-        </div>
-        <div class="small_ballon">
-            <img src="/qcenter/static/icons/schedule.ico" width=20px; height=20px;> &nbsp;
-            Your Schedule
-        </div>
-        <div class="small_ballon">
-            <img src="/qcenter/static/icons/engine.ico" width=20px; height=20px;> &nbsp;
-            Settings
-        </div>
     </div>
+    {% include "base/dasbor.html" %}
+    
 </aside>

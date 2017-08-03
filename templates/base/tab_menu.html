@@ -1,14 +1,14 @@
 <ul id="tabmenu">
     <li>
-        <a href="#">City</a>
+        <a href="#">Kota</a>
         
         <ul>
             {% for item in city %}
-                <li><a href="{% url 'dashboard' %}">{{ item.name }}</a>
+                <li><a href="{% url 'dashboard' %}" style="text-decoration: none">{{ item.name }}</a>
                     <ul>
                         {% if item.get_hospital %}
                             {% for izu in item.get_hospital %}
-                                <li><a href="{% url 'hospital' izu.id %}">{{ izu }}</a></li>
+                                <li><a href="{% url 'hospital' izu.id %}" style="text-decoration: none">{{ izu }}</a></li>
                             {% endfor %}
                         {% else %}
                             <li><a href="#">No Hospital Data</a></li>
@@ -19,7 +19,7 @@
     </li>
     
     <li>
-        <a href="?3">About Us</a>
+        <a href="?3">Tentang Kami</a>
         <ul>
             <li><a href="#"><img src="/qcenter/static/icons/about.png" style="width: 25px; height: 25px;"></a></li>
             <li><a href="http://www.facebook.com"><img src="/qcenter/static/icons/facebook.png" style="width: 25px; height: 25px;"></a></li>

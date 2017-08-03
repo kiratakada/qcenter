@@ -12,7 +12,7 @@
 		{% block head %}{% endblock %}
 	</head>
 
-	<div class="wrapper">
+	<div class="wrapper" style="padding-bottom: 50px;">
 		<header class="header">
 			
 			<span style="padding: 30px; font-size: 20px;">
@@ -22,7 +22,7 @@
 			
 			{% if user.is_authenticated %}
 				<div style="float: right; padding: 17px;">
-					<span style="color:white;">Signed as -- {{ user.first_name }}</span> &nbsp;
+					<span style="color:white; font-size: 15px;">Hi, {{ user.first_name }} {{ user.last_name }}</span> &nbsp;
 					<a href="{% url 'user_logout' %}">
 						<img src="/qcenter/static/assets/logouthover.png">
 					</a>
@@ -32,9 +32,8 @@
 		{% include "base/tab_menu.html" %}
 		{% block body %}{% endblock %}
 	</div>
-	
 	<footer class="footer">
-		<span style="float: right; padding: 20px;">Qcenter copyright 2014 </span>
+		<span style="float: right; padding: 20px;">Qcenter copyright 2017 </span>
 	</footer><!-- .footer -->
 	
 </html>
