@@ -1,11 +1,14 @@
 <aside class="left-sidebar">
     <div style="text-align: center; padding-top: 30px;">
-        {% ifequal user_profile.gender 1 %}
-            <img src="/qcenter/static/display/gender/male.png" width="200;" height="200;">
+        {% if user_profile.gender %}
+            <img src="/qcenter/static/display/gender/ranli.jpeg" width="200;" height="200;">
         {% else %}
-            <img src="/qcenter/static/display/gender/female.png" width="200;" height="200;">
-        {% endifequal %}
-        
+            {% ifequal user_profile.gender 1 %}
+                <img src="/qcenter/static/display/gender/male.png" width="200;" height="200;">
+            {% else %}
+                <img src="/qcenter/static/display/gender/female.png" width="200;" height="200;">
+            {% endifequal %}
+        {% endif %}
     </div>
     {% include "base/dasbor.html" %}
     

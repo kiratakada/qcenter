@@ -52,11 +52,11 @@ How to setup qcenter server
     
     6.2 Run with specific ip address http://10.62.3.7:5000
     
-        $ python manage.py runserver -p 5000 -t 10.62.3.7
+        $ python manage.py runserver -p 5000 -t 206.189.41.159
     
     6.3 Run with specific ip address with different port  http://10.62.3.7:7000
         
-        $ python manage.py runserver -p 7000 -t 10.62.3.7
+        $ python manage.py runserver -p 7000 -t 206.189.41.159
 
 7. How to execute unit test
 
